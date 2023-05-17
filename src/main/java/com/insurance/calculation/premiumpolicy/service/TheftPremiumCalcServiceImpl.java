@@ -14,7 +14,7 @@ import static com.insurance.calculation.premiumpolicy.common.RiskTypeEnum.THEFT;
 import static java.util.Optional.ofNullable;
 
 @Service
-public class TheftPremiumCalcServiceImpl implements PremiumCalculationService {
+class TheftPremiumCalcServiceImpl implements PremiumCalculationService {
 
     private final static BigDecimal LIMIT = BigDecimal.valueOf(15);
     private final static BigDecimal COEFFICIENT_THEFT_DEFAULT = BigDecimal.valueOf(0.11);

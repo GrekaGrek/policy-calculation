@@ -2,7 +2,6 @@ package com.insurance.calculation.premiumpolicy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.insurance.calculation.premiumpolicy.common.PolicyStatusEnum;
 import com.insurance.calculation.premiumpolicy.common.RiskTypeEnum;
 import com.insurance.calculation.premiumpolicy.domain.Policy;
@@ -10,8 +9,8 @@ import com.insurance.calculation.premiumpolicy.domain.PolicyObject;
 import com.insurance.calculation.premiumpolicy.domain.PolicySubObject;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class TestHelper {
 
@@ -20,27 +19,23 @@ public class TestHelper {
     private static final String SUB_OBJECT_NAME = "10k Xiaomi TV";
 
     public static Policy createPolicy(BigDecimal sumInsuredFire, BigDecimal sumInsuredTheft) {
-        return new Policy()
-                .setPolicyNumber(POLICY_NUMBER)
-                .setPolicyStatus(PolicyStatusEnum.REGISTERED)
-                .setPolicyObjectList(Collections.singletonList(
-                                new PolicyObject()
-                                        .setObjectName(OBJECT_NAME)
-                                        .setSubObjectList(
-                                                Arrays.asList(
-                                                        new PolicySubObject()
-                                                                .setSubObjectName(SUB_OBJECT_NAME)
-                                                                .setRiskType(RiskTypeEnum.THEFT)
-                                                                .setSumInsured(sumInsuredTheft)
-                                                        ,
-                                                        new PolicySubObject()
-                                                                .setSubObjectName(SUB_OBJECT_NAME)
-                                                                .setRiskType(RiskTypeEnum.FIRE)
-                                                                .setSumInsured(sumInsuredFire)
-                                                )
-                                        )
-                        )
-                );
+        return new Policy(
+                POLICY_NUMBER,
+                PolicyStatusEnum.REGISTERED,
+                Collections.singletonList(
+                        new PolicyObject(
+                                OBJECT_NAME,
+                                List.of(new PolicySubObject(
+                                                SUB_OBJECT_NAME,
+                                                sumInsuredTheft,
+                                                RiskTypeEnum.THEFT
+                                        ),
+                                        new PolicySubObject(
+                                                SUB_OBJECT_NAME,
+                                                sumInsuredFire,
+                                                RiskTypeEnum.FIRE
+                                        ))
+                        )));
     }
 
     public static String mapToJson(Object obj) throws JsonProcessingException {

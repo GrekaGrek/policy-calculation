@@ -14,7 +14,7 @@ import static com.insurance.calculation.premiumpolicy.common.RiskTypeEnum.FIRE;
 import static java.util.Optional.ofNullable;
 
 @Service
-public class FirePremiumCalcServiceImpl implements PremiumCalculationService {
+class FirePremiumCalcServiceImpl implements PremiumCalculationService {
 
     private final static BigDecimal LIMIT = BigDecimal.valueOf(100);
     private final static BigDecimal COEFFICIENT_FIRE_DEFAULT = BigDecimal.valueOf(0.014);

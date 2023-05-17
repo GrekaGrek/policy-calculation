@@ -26,7 +26,7 @@ class PremiumCalculationServiceImplTest {
     void calculateFireAndTheftPremiumSum() {
         var sumInsuredFire = BigDecimal.valueOf(100.00);
         var sumInsuredTheft = BigDecimal.valueOf(8.00);
-        var policy = createPolicy(sumInsuredFire,sumInsuredTheft);
+        var policy = createPolicy(sumInsuredFire, sumInsuredTheft);
 
         when(mockCalculationService.calculatePremium(policy)).thenReturn(sumInsuredFire).thenReturn(sumInsuredTheft);
 

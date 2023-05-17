@@ -50,8 +50,8 @@ class TheftPremiumCalcServiceImplTest {
 
     @Test
     void calculateTheftPremiumWithDefaultCoefficientWhenPolicyStatusIsDifferent() {
-        var policy = createPolicy(BigDecimal.ZERO, BigDecimal.valueOf(11))
-                .setPolicyStatus(PolicyStatusEnum.APPROVED);
+        var policy = createPolicy(BigDecimal.ZERO, BigDecimal.valueOf(11));
+                policy.setPolicyStatus(PolicyStatusEnum.APPROVED);
 
         // sum insured must be multiplied on default 0.11
         var expectedResult = BigDecimal.valueOf(1.21);

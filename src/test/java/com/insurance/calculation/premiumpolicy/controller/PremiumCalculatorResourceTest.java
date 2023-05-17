@@ -53,7 +53,8 @@ class PremiumCalculatorResourceTest {
                                 .content(mapToJson(POLICY)))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(content().string("14.5 EUR"));
+                .andExpect(content().string("14.5 EUR"))
+                .andReturn();
 
         verify(mockPremiumCalculationService).calculatePremium(POLICY);
     }

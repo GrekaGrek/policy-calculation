@@ -50,8 +50,8 @@ class FirePremiumCalcServiceImplTest {
 
     @Test
     void calculateFirePremiumWhenSumInsuredOverHundredWhenPolicyStatusIsDifferent() {
-        var policy = createPolicy(BigDecimal.valueOf(102.00), BigDecimal.ZERO)
-                .setPolicyStatus(PolicyStatusEnum.APPROVED);
+        var policy = createPolicy(BigDecimal.valueOf(102.00), BigDecimal.ZERO);
+                policy.setPolicyStatus(PolicyStatusEnum.APPROVED);
 
         // sum insured > 100 must be multiplied on 0.024
         var expectedResult = BigDecimal.valueOf(2.45);
